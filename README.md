@@ -1,4 +1,4 @@
-# Project for study purpose (Go + Postgres)
+# Project for study purpose (Go + Postgres + Docker)
 
 ## Build
 
