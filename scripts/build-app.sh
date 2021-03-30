@@ -1,4 +1,4 @@
 #!/bin/bash
 
-go env
 go mod init github.com/emersonmendes/go-hw
+go get github.com/lib/pq
