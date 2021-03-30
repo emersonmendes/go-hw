@@ -1,0 +1,23 @@
+
+
+version: '3'
+services:
+
+    go_build:
+        image: golang:1.16-buster
+        user: root
+        restart: unless-stopped
+        working_dir: /usr/src/app/
+        volumes:
+            - ./src:/usr/src/app
+        command: [ "go", "mod", "init", "example.com/hw" ]
+
+
+    go_get_pq:
+        image: golang:1.16-buster
+        user: root
+        restart: unless-stopped
+        working_dir: /usr/src/app/
+        volumes:
+            - ./src:/usr/src/app
+        command: [ "go", "get", "github.com/lib/pq" ]

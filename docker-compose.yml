@@ -1,0 +1,32 @@
+
+
+version: '3'
+services:
+
+    hw_app:
+        image: golang:1.16-buster
+        user: root
+        restart: unless-stopped
+        ports:
+            - "10000:10000"
+        working_dir: /usr/src/app/
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - ./src:/usr/src/app
+        command: [ "go", "run", "." ]
+
+
+    hw_db:
+        image: postgres:9.6.17
+        user: root
+        restart: unless-stopped
+        environment:
+            - POSTGRES_DB=hw_db
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - "5432:5432"
+        volumes:
+            - /etc/localtime:/etc/localtime:ro
+            - ./scripts/create-db.sh:/docker-entrypoint-initdb.d/create-db.sh
+            - ./scripts/db.sql:/usr/src/db.sql
