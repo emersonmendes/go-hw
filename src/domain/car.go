@@ -1,4 +1,4 @@
-package main
+package domain
 
 type Car struct {
     Name string `json:"Name"`

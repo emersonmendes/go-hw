@@ -1,4 +1,4 @@
-module example.com/hw
+module github.com/emersonmendes/go-hw
 
 go 1.16
 

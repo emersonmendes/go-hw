@@ -10,8 +10,8 @@ services:
         working_dir: /usr/src/app/
         volumes:
             - ./src:/usr/src/app
-        command: [ "go", "mod", "init", "example.com/hw" ]
-
+            - ./scripts/build-app.sh:/usr/src/scripts/build-app.sh
+        command: [ "/usr/src/scripts/build-app.sh" ]
 
     go_get_pq:
         image: golang:1.16-buster
