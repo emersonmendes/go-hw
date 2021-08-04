@@ -3,7 +3,6 @@ package service
 import (
     "github.com/emersonmendes/go-hw/domain"
     "github.com/emersonmendes/go-hw/database"
-    _ "github.com/lib/pq"
 )
 
 func GetCars() []domain.Car {

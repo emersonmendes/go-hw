@@ -2,7 +2,8 @@ package database
 
 import (
     "fmt"
-    "database/sql"  
+    "database/sql"
+    _ "github.com/lib/pq"
 )
 
 const PostgresDriver = "postgres"
