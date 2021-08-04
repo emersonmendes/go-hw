@@ -4,7 +4,7 @@ version: '3'
 services:
 
     hw_app:
-        image: golang:1.16-buster
+        image: golang:1.16.6-buster
         user: root
         restart: unless-stopped
         ports:

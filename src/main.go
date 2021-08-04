@@ -5,7 +5,6 @@ import (
     "encoding/json"
     "net/http"
     "fmt"
-
     "github.com/emersonmendes/go-hw/service"
     _ "github.com/lib/pq"
 )

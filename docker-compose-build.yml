@@ -2,7 +2,7 @@ version: '3'
 services:
 
     go_build:
-        image: golang:1.16-buster
+        image: golang:1.16.6-buster
         user: root
         restart: unless-stopped
         working_dir: /usr/src/app/

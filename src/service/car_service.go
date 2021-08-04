@@ -8,7 +8,7 @@ import (
 
 func GetCars() []domain.Car {
 
-    sqlStatement, err := database.Query("SELECT name, color FROM car")
+    sqlStatement, err := database.Query("select name, color from car")
   
     checkErr(err)
 
