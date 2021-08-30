@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-hw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-hw
+  template:
+    metadata:
+      labels:
+        app: go-hw
+    spec:
+      containers:
+      - name: go-hw
+        image: emersonRegistry.azurecr.io/go-hw:v1
+        ports:
+        - containerPort: 80
+        env:
+        - name: TITLE
+          value: "Welcome to Azure Kubernetes Service (AKS)"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-hw
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: go-hw

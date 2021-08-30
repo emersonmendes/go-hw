@@ -14,5 +14,5 @@ func buildRoutes() {
 func main() {
     buildRoutes()
     fmt.Println("Starting app ...")
-    http.ListenAndServe(":10000", nil)
+    http.ListenAndServe(":3000", nil)
 }

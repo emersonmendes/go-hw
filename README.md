@@ -36,6 +36,36 @@ kubectl get nodes
 kubectl create -f https://raw.githubusercontent.com/kubernetes/website/master/content/en/examples/controllers/nginx-deployment.yaml
 
 # view deployments
-kubectl get deployments
+kubectl get deployments -A
+
+# remove deploy
+kubectl delete deploy deploymentname -n namespacename
+
+# build image
+docker build -t emersonRegistry.azurecr.io/go-hw:v1 .
+
+# push docker image
+az acr login --name emersonRegistry
+
+docker login emersonRegistry.azurecr.io 
+
+docker push emersonRegistry.azurecr.io/go-hw:v1
+
+# deploy to kubernetes
+kubectl create -f go-hw.yaml
+
+# deploy load balancer
+kubectl create namespace ingress-basic
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm install nginx-ingress ingress-nginx/ingress-nginx \
+    --namespace ingress-basic \
+    --set controller.replicaCount=2 \
+    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux
+kubectl --namespace ingress-basic get services -o wide -w nginx-ingress-ingress-nginx-controller
+
+kubectl apply -f go-hw.yaml --namespace ingress-basic
+kubectl apply -f go-hw-ingress.yaml --namespace ingress-basic
 
 ```
