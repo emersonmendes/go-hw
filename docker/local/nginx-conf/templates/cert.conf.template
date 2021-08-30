@@ -1,0 +1,2 @@
+ssl_certificate /app/nginx/certs/${DEPLOY_NGINX_CERTIFICATE};
+ssl_certificate_key /app/nginx/certs/${DEPLOY_NGINX_CERTIFICATE_KEY};

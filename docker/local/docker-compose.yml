@@ -3,16 +3,34 @@
 version: '3'
 services:
 
+    hw_nginx:
+        image: nginx:1.19.4
+        restart: unless-stopped
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./nginx-conf/nginx.conf:/etc/nginx/nginx.conf
+            - ./nginx-conf/certs:/app/nginx/certs
+            - ./nginx-conf/templates:/etc/nginx/templates
+        environment:
+            - DEPLOY_NGINX_CERTIFICATE=server.crt
+            - DEPLOY_NGINX_CERTIFICATE_KEY=server.key
+        depends_on:
+            - hw_app
+
     hw_app:
         image: golang:1.16.6-buster
         user: root
         restart: unless-stopped
-        ports:
-            - "10000:10000"
+        # ports:
+        #     - "10000:10000"
         working_dir: /usr/src/app/
         volumes:
             - /etc/localtime:/etc/localtime:ro
             - ../../src:/usr/src/app
+        depends_on:
+            - hw_db
         command: [ "go", "run", "." ]
 
 
