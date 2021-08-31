@@ -8,9 +8,9 @@ import (
 
 const PostgresDriver = "postgres"
 const User = "postgres"
-const Host = "hw_db"
+const Host = "go-hw-db"
 const Port = "5432"
-const Password = "postgres"
+const Password = "gohw2020@"
 const DbName = "hw_db"
 
 var DataSourceName = fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable", Host, Port, User, Password, DbName)
