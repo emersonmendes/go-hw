@@ -1,33 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-hw
+  name: aks-go-hw
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: go-hw
+      app: aks-go-hw
   template:
     metadata:
       labels:
-        app: go-hw
+        app: aks-go-hw
     spec:
       containers:
-      - name: go-hw
-        image: emersonRegistry.azurecr.io/go-hw:v1
+      - name: aks-go-hw
+        image: emersonregistry.azurecr.io/go-hw:v1
         ports:
-        - containerPort: 80
+        - containerPort: 3000
         env:
         - name: TITLE
-          value: "Welcome to Azure Kubernetes Service (AKS)"
+          value: "AKS Ingress Demo"
+      imagePullSecrets:
+      - name: acr-secret
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: go-hw
+  name: aks-go-hw
 spec:
   type: ClusterIP
   ports:
-  - port: 80
+  - port: 3000
   selector:
-    app: go-hw
+    app: aks-go-hw
